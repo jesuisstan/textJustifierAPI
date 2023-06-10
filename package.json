@@ -4,12 +4,13 @@
   "description": "API for justifying text",
   "main": "dist/app.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && copyfiles -f src/pages/* dist/pages",
     "start": "node ./dist/app.js"
   },
   "author": "Stan Krivtsoff",
   "devDependencies": {
     "@types/node": "^20.2.6",
-    "typescript": "^4.3.2"
+    "typescript": "^4.3.2",
+    "copyfiles": "^2.4.1"
   }
 }
