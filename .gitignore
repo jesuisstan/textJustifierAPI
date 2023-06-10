@@ -1,11 +1,4 @@
-/private
-/database
-yarn-error.log
-yarn-debug.log
-/package.json
-/package-lock.json
 /node_modules
 /dist
-/yarn.lock
-./.env
 .env
+.vscode
