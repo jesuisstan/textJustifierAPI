@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Text Justification</title>
+	<style>
+    body {
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: 'Roboto', sans-serif;
+      font-size: 21px;
+      background: linear-gradient(to bottom, #131414, #00d2ff);
+      color: #fff;
+    }
+		button {
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #fff;
+      color: #131414;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0c0c0cee;
+      color: whitesmoke;
+    }
+		input {
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #fff;
+      color: #131414;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+		input:hover {
+      background-color: #0c0c0cee;
+      color: whitesmoke;
+    }
+  </style>
+</head>
+<body>
+	<button onclick="proceedToHome()">Home</button>
+	<div>----------------------------------</div>
+  <form action="/api/justify" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" accept=".txt">
+    <input type="submit" value="Submit">
+  </form>
+
+	<script>
+		const proceedToHome = () => {
+			window.location.href = "/";
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Text Justifier</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      display: flex;
+      min-height: 100vh;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      font-family: 'Roboto', sans-serif;
+      font-size: 21px;
+      background: linear-gradient(to bottom, #131414, #00d2ff);
+      color: #fff;
+    }
+    h1 {
+      text-transform: uppercase;
+    }
+		button {
+      padding: 10px 20px;
+      font-size: 18px;
+      font-weight: bold;
+      background-color: #fff;
+      color: #131414;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0c0c0cee;
+      color: whitesmoke;
+    }
+  </style>
+</head>
+<body>
+  <h1>Hello, TicTacTrip!</h1>
+  <p>Let's check my homework</p>
+	<button onclick="proceedToJustify()">Proceed</button>
+	<script>
+		const proceedToJustify = () => {
+			window.location.href = "/api/justify";
+		}
+	</script>
+</body>
+</html>
