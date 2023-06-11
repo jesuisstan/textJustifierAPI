@@ -1,3 +1,13 @@
+import crypto from 'crypto';
+
+// Функция для генерации токена на основе email
+export function generateToken(email: string): string {
+  const hash = crypto.createHash('sha256');
+  hash.update(email);
+  const token = hash.digest('hex');
+  return token;
+}
+
 // to count Words in text
 export function countWords(text: string): number {
   const words = text.split(' ');
@@ -35,7 +45,6 @@ function replaceSpecialCharacters(text: string): string {
   return replacedText;
 }
 
-// Adding spaces between words
 export function justifyText(text: string): string {
   const replacedText = replaceSpecialCharacters(text);
 
@@ -51,40 +60,43 @@ export function justifyText(text: string): string {
       if (currentLine.length + word.length + 1 <= 80) {
         currentLine += ` ${word}`;
       } else {
-        const spacesToAdd = 80 - currentLine.length;
-        const spaces = ' '.repeat(spacesToAdd);
-        currentLine = addSpacesBetweenWords(currentLine, spaces);
+        currentLine = padStringWithSpaces(currentLine)
         justifiedLines.push(currentLine);
+        
         currentLine = word;
       }
     }
 
-    const spacesToAdd = 80 - currentLine.length;
-    const spaces = ' '.repeat(spacesToAdd);
-    currentLine = addSpacesBetweenWords(currentLine, spaces);
+    currentLine = padStringWithSpaces(currentLine)
+
     justifiedLines.push(currentLine);
+
   }
 
   return justifiedLines.join('\n');
 }
 
-function addSpacesBetweenWords(line: string, spaces: string): string {
-  const words = line.split(' ');
-  const gaps = words.length - 1;
+function padStringWithSpaces(input: string): string {
+  const maxLength = 80;
 
-  if (gaps === 0) {
-    return line;
+  if (input.length >= maxLength) {
+    return input;
   }
 
-  const spacesPerGap = Math.floor(spaces.length / gaps);
-  const extraSpaces = spaces.length % gaps;
+  const words = input.split(' ');
+  const wordCount = words.length;
+  let spacesToAdd = maxLength - input.length + wordCount - 1;
 
-  let newLine = words[0];
+  let paddedString = '';
+  for (let i = 0; i < wordCount; i++) {
+    paddedString += words[i];
 
-  for (let i = 1; i < words.length; i++) {
-    const numSpaces = spacesPerGap + (i <= extraSpaces ? 1 : 0);
-    newLine += ' '.repeat(numSpaces) + words[i];
+    if (i < wordCount - 1) {
+      const spaces = Math.ceil(spacesToAdd / (wordCount - i - 1));
+      paddedString += ' '.repeat(spaces);
+      spacesToAdd -= spaces;
+    }
   }
 
-  return newLine;
+  return paddedString;
 }
